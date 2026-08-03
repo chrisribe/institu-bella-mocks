@@ -645,6 +645,12 @@
       color: var(--rose); border: 1px solid var(--rose);
       padding: 3px 10px; border-radius: var(--radius-pill);
     }
+    .products-state {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 40px 0;
+    }
 
     /* ── BOOKING CTA ── */
     .booking-cta {
@@ -1072,66 +1078,11 @@
       <h4>Ma sélection</h4>
       <h2>Boutique</h2>
       <p class="section-subtitle">Des produits professionnels que j'utilise moi-même et que je recommande avec conviction — pour prolonger vos soins à la maison.</p>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80" alt="Sérum anti-âge">
-          </div>
-          <div class="product-body">
-            <div class="product-cat">Anti-âge</div>
-            <div class="product-name">Sérum Jeunesse</div>
-            <div class="product-desc">Fermeté, élasticité et densité — formule concentrée aux actifs naturels.</div>
-            <div class="product-footer">
-              <span class="product-price">$89</span>
-              <a href="#" class="btn btn-rose" style="padding:7px 16px;font-size:11px;">Ajouter</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80" alt="Crème hydratante">
-          </div>
-          <div class="product-body">
-            <div class="product-cat">Hydratation</div>
-            <div class="product-name">Hydracrème Volumisante</div>
-            <div class="product-desc">Améliore l'élasticité, lisse et hydrate en profondeur. Tenue 24h.</div>
-            <div class="product-footer">
-              <span class="product-price">$114</span>
-              <a href="#" class="btn btn-rose" style="padding:7px 16px;font-size:11px;">Ajouter</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80" alt="SPF 50">
-          </div>
-          <div class="product-body">
-            <div class="product-cat">Solaire</div>
-            <div class="product-name">Protection SPF 50</div>
-            <div class="product-desc">Texture fluide, confortable. Valeur ajoutée anti-âge. Usage quotidien.</div>
-            <div class="product-footer">
-              <span class="product-price">$52</span>
-              <span class="product-new">Nouveau</span>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&q=80" alt="Coffret Glow">
-          </div>
-          <div class="product-body">
-            <div class="product-cat">Coffret</div>
-            <div class="product-name">Coffret Glow</div>
-            <div class="product-desc">Sérum + contour des yeux + soin nuit. Le trio pour rayonner au quotidien.</div>
-            <div class="product-footer">
-              <span class="product-price">$246</span>
-              <a href="#" class="btn btn-rose" style="padding:7px 16px;font-size:11px;">Ajouter</a>
-            </div>
-          </div>
-        </div>
+      <div class="products-grid" id="products-grid" data-limit="8">
+        <p class="products-state" id="products-state">Chargement des produits…</p>
       </div>
       <div style="margin-top:40px;">
-        <a href="#" class="btn btn-outline">Voir tous les produits</a>
+        <a href="#boutique" class="btn btn-outline" id="products-viewall" hidden>Voir tous les produits</a>
       </div>
     </div>
   </section>
@@ -1308,6 +1259,66 @@
         drawer.style.top = nav.getBoundingClientRect().bottom + 'px';
       }
     });
+  </script>
+
+  <!-- BOUTIQUE — live Wix Stores products -->
+  <script type="module">
+    import { queryProducts } from '../js/wix/wix-store-catalog.js';
+
+    const grid = document.getElementById('products-grid');
+    const state = document.getElementById('products-state');
+    const viewAll = document.getElementById('products-viewall');
+    const limit = parseInt(grid?.dataset.limit || '8', 10);
+
+    const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+    const stripTags = (html) => {
+      const d = document.createElement('div');
+      d.innerHTML = html ?? '';
+      return (d.textContent || '').trim();
+    };
+
+    function renderCard(p) {
+      const name = escapeHtml(p.name);
+      const price = escapeHtml(p.actualPriceRange?.minValue?.formattedAmount ?? '');
+      const img = p.media?.main?.image?.url;
+      const imgAlt = escapeHtml(p.media?.main?.image?.altText || p.name || '');
+      const desc = escapeHtml(stripTags(p.plainDescription).slice(0, 90));
+      const soldOut = p.inventory?.availabilityStatus === 'OUT_OF_STOCK';
+      const imgHtml = img
+        ? `<img src="${escapeHtml(img)}" alt="${imgAlt}" loading="lazy">`
+        : '';
+      return `
+        <div class="product-card">
+          <div class="product-img">${imgHtml}</div>
+          <div class="product-body">
+            <div class="product-name">${name}</div>
+            ${desc ? `<div class="product-desc">${desc}</div>` : ''}
+            <div class="product-footer">
+              <span class="product-price">${price}</span>
+              ${soldOut
+                ? '<span class="product-new">Épuisé</span>'
+                : '<a href="#booking" class="btn btn-rose" style="padding:7px 16px;font-size:11px;">Ajouter</a>'}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    (async () => {
+      try {
+        const { products } = await queryProducts({ limit });
+        if (!products.length) {
+          state.textContent = 'La boutique sera bientôt disponible.';
+          return;
+        }
+        grid.innerHTML = products.map(renderCard).join('');
+        if (viewAll) viewAll.hidden = false;
+      } catch (err) {
+        console.error('Boutique load failed:', err);
+        state.textContent = 'Impossible de charger la boutique pour le moment.';
+      }
+    })();
   </script>
 
 </body>

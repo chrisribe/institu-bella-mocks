@@ -3,532 +3,1323 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Institut Bella par Chloé — Maquettes de site web</title>
+  <title>Bella par Chloé — Variant C (Warm Personal Brand)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* ── TOKENS ── */
+    :root {
+      --rose:        #4fada8;   /* seafoam teal — CTA, accents */
+      --rose-light:  #7ececa;   /* light aqua */
+      --rose-pale:   #e0f4f3;   /* pale aqua tint */
+      --rose-hover:  #3d9490;   /* darker seafoam on hover */
+      --plum:        #2a5c58;   /* medium ocean — hero, nav, footer */
+      --plum-light:  #3d8480;   /* lighter ocean */
+      --sand:        #f5f0e6;   /* warm sand card bg */
+      --sand-mid:    #ece4d4;   /* deeper sand */
+      --cream:       #fdfaf5;   /* page bg — warm white */
+      --ink:         #162e2c;   /* near-black with ocean tint */
+      --ink-soft:    #3d6260;   /* muted ocean text */
+      --muted:       #7aa4a2;   /* placeholder / secondary text */
+      --divider:     #d4ecea;   /* soft aqua divider */
+      --on-rose:     #ffffff;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --radius-sm:    8px;
+      --radius-md:    16px;
+      --radius-lg:    32px;
+      --radius-pill:  999px;
+      --section-pad:  96px;
+    }
+
+    /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      background: #fdfaf7;
-      color: #2d1f24;
-      line-height: 1.6;
-    }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
+    img { display: block; width: 100%; }
+    ul { list-style: none; }
 
-    /* HEADER */
-    .header {
-      background: #2a5c58;
-      color: #fff;
-      padding: 64px 48px 72px;
-      text-align: center;
+    /* ── TYPOGRAPHY ── */
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      color: var(--ink);
     }
-    .header-tag {
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    h4 {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 14px;
+    }
+    p { color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section {
+      padding: var(--section-pad) 0;
+    }
+    .text-center { text-align: center; }
+    .section-subtitle {
+      font-size: 17px;
+      color: var(--ink-soft);
+      max-width: 540px;
+      margin: 0 auto 56px;
+      line-height: 1.8;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
       display: inline-block;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-rose {
+      background: var(--rose);
+      color: var(--on-rose);
+    }
+    .btn-rose:hover {
+      background: var(--rose-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 129, 106, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--rose);
+      border: 1.5px solid var(--rose);
+    }
+    .btn-outline:hover {
+      background: var(--rose-pale);
+    }
+    .btn-plum {
+      background: var(--plum);
+      color: #fff;
+    }
+    .btn-plum:hover {
+      background: var(--plum-light);
+      transform: translateY(-2px);
+    }
+
+    /* ── ANNOUNCEMENT ── */
+    .announcement {
+      background: var(--plum);
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      padding: 10px 20px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.3s;
+      position: relative;
+      z-index: 200;
+    }
+    .announcement a { color: var(--rose-light); text-decoration: underline; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 40px;
+      left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--plum);
+      transition: background 0.4s, box-shadow 0.3s, top 0.3s;
+    }
+    .nav.scrolled {
+      background: rgba(253, 250, 247, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--divider);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.3s;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    .nav-logo em { font-style: italic; color: var(--rose-light); }
+    .nav.scrolled .nav-logo { color: var(--ink); }
+    .nav.scrolled .nav-logo em { color: var(--rose); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .nav-links li { list-style: none; }
+    .nav-links li::marker { content: ''; display: none; }
+    .nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+    .nav.scrolled .nav-link { color: var(--ink-soft); }
+    .nav-link:hover, .nav.scrolled .nav-link:hover { color: var(--rose); }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 22px;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-pill);
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--rose-hover); transform: translateY(-1px); }
+    .nav.scrolled .nav-cta { background: var(--rose); color: #fff; }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      appearance: none;
+      -webkit-appearance: none;
+      list-style: none;
+      flex-shrink: 0;
+      outline: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: rgba(255,255,255,0.85);
+      transition: all 0.3s;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .nav.scrolled .nav-hamburger span { background: var(--ink); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 112px;
+      left: 0; right: 0;
+      background: var(--cream);
+      box-shadow: 0 8px 32px rgba(74, 45, 53, 0.12);
+      z-index: 99;
+      padding: 16px 32px 32px;
+      flex-direction: column;
+      border-top: 2px solid var(--rose-pale);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      display: block;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--divider);
+      transition: color 0.2s;
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+    .nav-drawer a:hover { color: var(--rose); }
+    .nav-drawer .drawer-cta {
+      margin-top: 16px;
+      text-align: center;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-pill);
+      border-bottom: none;
+      padding: 14px;
+    }
+    .nav-drawer .drawer-cta:hover { background: var(--rose-hover); color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 112px;
+    }
+    .hero-left {
+      background: var(--plum);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px clamp(32px, 5vw, 80px) 80px clamp(32px, calc((100vw - 1160px)/2 + 48px), 160px);
+      position: relative;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: 0; bottom: 0;
+      width: 120px;
+      background: var(--plum);
+      clip-path: polygon(0 0, 40% 0, 100% 50%, 40% 100%, 0 100%);
+      z-index: 2;
+    }
+    .hero-tagline {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: #7ececa;
+      color: var(--rose-light);
       margin-bottom: 20px;
-      border: 1px solid rgba(126,206,202,0.4);
-      padding: 5px 16px;
-      border-radius: 999px;
     }
-    .header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(32px, 5vw, 56px);
+    .hero h1 { color: #fff; margin-bottom: 8px; }
+    .hero h1 em { font-style: italic; color: var(--rose-light); }
+    .hero-sub {
+      font-family: var(--font-display);
+      font-size: 20px;
       font-weight: 400;
-      line-height: 1.15;
-      margin-bottom: 16px;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 28px;
     }
-    .header h1 em { font-style: italic; color: #e8b4a0; }
-    .header p {
-      font-size: 17px;
-      color: rgba(255,255,255,0.88);
-      max-width: 560px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* CONTEXT */
-    .context-bar {
-      background: #e0f4f3;
-      border-top: 3px solid #4fada8;
-      padding: 24px 48px;
-    }
-    .context-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .context-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #4fada8;
-      white-space: nowrap;
-      padding-top: 2px;
-      flex-shrink: 0;
-    }
-    .context-bar p {
-      font-size: 14px;
-      color: #5c4a50;
-      line-height: 1.7;
-    }
-
-    /* MAIN */
-    .main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 64px 48px 96px;
-    }
-    .section-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #9a8088;
-      margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .section-heading::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #e8ddd8;
-    }
-
-    /* CARDS */
-    .variants-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-    .variant-card {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #e8ddd8;
-      transition: transform 0.3s, box-shadow 0.3s;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-    }
-    .variant-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(74,45,53,0.12);
-    }
-    .card-preview {
-      position: relative;
-      height: 220px;
-      overflow: hidden;
-    }
-    .card-preview iframe {
-      width: 200%;
-      height: 200%;
-      transform: scale(0.5);
-      transform-origin: top left;
-      border: none;
-      pointer-events: none;
-    }
-    .card-preview-overlay {
-      position: absolute;
-      inset: 0;
-      cursor: pointer;
-    }
-    .card-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 999px;
-      color: #fff;
-    }
-    .badge-a { background: #177d91; }
-    .badge-b { background: #1a1612; border: 1px solid #c9a96e; color: #c9a96e; }
-    .badge-c { background: #4fada8; }
-
-    .card-body {
-      padding: 24px 28px 28px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-variant-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .label-a { color: #177d91; }
-    .label-b { color: #c9a96e; }
-    .label-c { color: #c8816a; }
-
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 500;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      color: #2d1f24;
-    }
-    .card-desc {
-      font-size: 14px;
-      color: #7a6570;
-      line-height: 1.7;
-      margin-bottom: 20px;
-      flex: 1;
-    }
-
-    /* PILLS */
-    .card-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 24px;
-    }
-    .pill {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 4px 12px;
-      border-radius: 999px;
-      border: 1px solid #e8ddd8;
-      color: #7a6570;
-      background: #fdfaf7;
-    }
-
-    /* PALETTE */
-    .card-palette {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .swatch {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.08);
-      flex-shrink: 0;
-    }
-    .swatch-label {
-      font-size: 11px;
-      color: #9a8088;
-      align-self: center;
-      margin-left: 4px;
-    }
-
-    /* CARD CTA */
-    .card-cta {
-      display: flex;
-      gap: 10px;
-    }
-    .btn-primary {
-      flex: 1;
-      display: block;
-      text-align: center;
-      padding: 11px 0;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #fff;
-      transition: all 0.2s;
-    }
-    .btn-a { background: #177d91; }
-    .btn-a:hover { background: #00596b; }
-    .btn-b { background: #2a1f16; }
-    .btn-b:hover { background: #1a1612; }
-    .btn-c { background: #4fada8; }
-    .btn-c:hover { background: #3d9490; }
-
-    .btn-ghost {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid #e8ddd8;
+    .hero-body {
       font-size: 16px;
-      color: #9a8088;
-      transition: border-color 0.2s, color 0.2s;
-      flex-shrink: 0;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      max-width: 440px;
+      margin-bottom: 40px;
     }
-    .btn-ghost:hover { border-color: #4fada8; color: #4fada8; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 80px;
+      background: linear-gradient(90deg, var(--plum), transparent);
+      z-index: 1;
+    }
 
-    /* RECOMMENDATION */
-    .recommendation {
-      margin-top: 56px;
-      background: linear-gradient(135deg, #e0f4f3 0%, #c8ecea 100%);
-      border-radius: 16px;
-      padding: 40px 48px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 32px;
-      align-items: center;
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--rose-pale);
+      padding: 24px 0;
     }
-    .rec-icon {
-      width: 64px; height: 64px;
-      background: #4fada8;
+    .trust-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--plum);
+    }
+    .trust-icon {
+      width: 32px; height: 32px;
+      background: var(--rose);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      color: #fff;
+      font-size: 14px;
       flex-shrink: 0;
     }
-    .rec-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #4fada8;
-      margin-bottom: 6px;
-    }
-    .rec-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 500;
-      color: #2d1f24;
-      margin-bottom: 10px;
-    }
-    .rec-desc {
-      font-size: 14px;
-      color: #7a6570;
-      line-height: 1.7;
-    }
 
-    /* NEXT STEPS */
-    .next-steps {
-      margin-top: 56px;
-    }
-    .steps-grid {
+    /* ── SERVICES ── */
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+    }
+    .service-card {
+      background: var(--sand);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(74, 45, 53, 0.12);
+    }
+    .service-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .service-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover .service-img img { transform: scale(1.05); }
+    .service-body { padding: 20px 24px 24px; }
+    .service-body h3 { font-size: 18px; margin-bottom: 6px; }
+    .service-body p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .service-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--rose);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .service-link:hover { gap: 10px; }
+
+    /* ── ABOUT — JE SUIS CHLOÉ ── */
+    .about-section { background: var(--sand); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-main {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .about-img-main img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-style: italic;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(200,129,106,0.3);
+    }
+    .about-badge strong {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .about-content h4 { margin-bottom: 8px; }
+    .about-content h2 { margin-bottom: 20px; }
+    .about-content p { margin-bottom: 16px; font-size: 16px; }
+    .about-signature {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-style: italic;
+      color: var(--rose);
       margin-top: 24px;
     }
-    .step-card {
-      background: #f7f1ec;
-      border-radius: 12px;
-      padding: 24px;
+    .about-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
     }
-    .step-num {
-      width: 32px; height: 32px;
-      background: #2a5c58;
-      color: #fff;
+    .about-value {
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .value-dot {
+      width: 8px; height: 8px;
       border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .about-value p { font-size: 13px; color: var(--ink-soft); margin: 0; }
+    .about-value strong { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--sand);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1.5px solid transparent;
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(74,45,53,0.1);
+    }
+    .pricing-card.featured {
+      background: var(--plum);
+      border-color: var(--rose);
+    }
+    .pricing-card.featured h3,
+    .pricing-card.featured .price,
+    .pricing-card.featured .price-period,
+    .pricing-card.featured li { color: #fff; }
+    .pricing-card.featured .pricing-desc { color: rgba(255,255,255,0.65); }
+    .pricing-badge {
+      position: absolute;
+      top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--rose);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: var(--radius-pill);
+    }
+    .pricing-card h3 { font-size: 18px; margin-bottom: 6px; color: var(--ink); }
+    .pricing-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .price { font-family: var(--font-display); font-size: 44px; font-weight: 400; color: var(--ink); line-height: 1; }
+    .price-period { font-size: 13px; color: var(--muted); margin-bottom: 24px; margin-top: 4px; }
+    .pricing-features { list-style: none; margin-bottom: 28px; }
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--ink-soft);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pricing-features li::before { content: '✓'; color: var(--rose); font-weight: 700; flex-shrink: 0; }
+    .pricing-card.featured .pricing-features li { border-color: rgba(255,255,255,0.15); }
+    .pricing-card.featured .pricing-features li::before { color: var(--rose-light); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--plum); }
+    .testimonials-section h2, .testimonials-section h4 { color: #fff; }
+    .testimonials-section .section-subtitle { color: rgba(255,255,255,0.6); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: background 0.3s;
+    }
+    .testimonial-card:hover { background: rgba(255,255,255,0.11); }
+    .stars { color: var(--rose-light); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
+    .testimonial-text {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--rose);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      color: #fff;
       font-weight: 700;
-      margin-bottom: 14px;
+      font-size: 14px;
+      flex-shrink: 0;
     }
-    .step-title {
-      font-size: 15px;
+    .author-name { font-size: 14px; font-weight: 600; color: #fff; }
+    .author-detail { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+    /* ── BOUTIQUE ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--sand);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(74,45,53,0.1);
+    }
+    .product-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .product-card:hover .product-img img { transform: scale(1.04); }
+    .product-body { padding: 16px 18px 20px; }
+    .product-cat {
+      font-size: 10px;
       font-weight: 600;
-      color: #2d1f24;
-      margin-bottom: 6px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 5px;
     }
-    .step-desc {
-      font-size: 13px;
-      color: #7a6570;
-      line-height: 1.6;
+    .product-name { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .product-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-family: var(--font-display); font-size: 20px; color: var(--ink); }
+    .product-new {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--rose); border: 1px solid var(--rose);
+      padding: 3px 10px; border-radius: var(--radius-pill);
+    }
+    .products-state {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 40px 0;
     }
 
-    /* FOOTER */
-    .footer {
-      background: #4a2d35;
-      color: rgba(255,255,255,0.5);
+    /* ── BOOKING CTA ── */
+    .booking-cta {
+      background: linear-gradient(135deg, var(--rose-pale) 0%, var(--sand-mid) 100%);
       text-align: center;
-      font-size: 13px;
-      padding: 24px 48px;
+      padding: var(--section-pad) 0;
     }
-    .footer span { color: #7ececa; }
+    .booking-cta h2 { margin-bottom: 16px; }
+    .booking-cta p { font-size: 17px; color: var(--ink-soft); max-width: 520px; margin: 0 auto 36px; }
+    .booking-cta .btn-rose { font-size: 15px; padding: 16px 40px; }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .variants-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .recommendation { grid-template-columns: 1fr; }
-      .main { padding: 48px 24px 72px; }
-      .header { padding: 48px 24px 56px; }
-      .context-bar { padding: 20px 24px; }
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-soft); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--cream);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--rose); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .contact-info h3 { margin-bottom: 24px; }
+    .info-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+    .info-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--rose-pale);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--rose); font-size: 16px; flex-shrink: 0;
+    }
+    .info-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+    .info-value { font-size: 15px; color: var(--ink); font-weight: 500; margin-top: 2px; }
+    .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 24px; margin-top: 12px; }
+    .hours-day { font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+    .hours-time { font-size: 13px; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--plum); color: rgba(255,255,255,0.7); padding: 60px 0 32px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo { font-family: var(--font-display); font-size: 22px; color: #fff; margin-bottom: 12px; }
+    .footer-brand .logo em { font-style: italic; color: var(--rose-light); }
+    .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-col h5 { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--rose-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left::after { display: none; }
+      .hero-right { display: none; }
+      .hero-left { padding: 60px 32px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-badge { right: 20px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      :root { --section-pad: 64px; }
+      .container { padding: 0 24px; }
+      .trust-bar-inner { gap: 24px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-tag">Fait avec amour par ton oncle · Juin 2026</div>
-    <h1>Institut Bella <em>par Chloé</em></h1>
-    <p>Bon, j'ai passé quelques soirées là-dessus. Trois maquettes. Trois ambiances différentes. Aucune excuse pour choisir Wix de base. Regarde-les toutes, dis-moi laquelle te parle, et on finalise ça proprement.</p>
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement" id="announcement">
+    ✨ Ouverture — 15% de rabais pour les premières clientes &nbsp;·&nbsp;
+    <a href="#booking">Réserver maintenant</a>
   </div>
 
-  <!-- CONTEXT -->
-  <div class="context-bar">
-    <div class="context-inner">
-      <div class="context-label">Rappel important</div>
-      <p>Les <strong>photos, prix et textes sont temporaires</strong> — j'ai mis des trucs qui ressemblaient à quelque chose. Ce qui compte ici c'est <em>l'ambiance générale</em> : les couleurs, la typo, le feeling. Le vrai contenu (tes photos, tes prix exacts, ta bio) on le met après. Concentre-toi sur : "est-ce que ça me ressemble ?"</p>
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <a href="#" class="nav-logo">Bella <em>par Chloé</em></a>
+    <ul class="nav-links">
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#about" class="nav-link">À propos</a></li>
+      <li><a href="#pricing" class="nav-link">Tarifs</a></li>
+      <li><a href="#testimonials" class="nav-link">Témoignages</a></li>
+      <li><a href="#boutique" class="nav-link">Boutique</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#booking" class="nav-cta">Prendre RDV</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#services">Services</a>
+    <a href="#about">À propos</a>
+    <a href="#pricing">Tarifs</a>
+    <a href="#testimonials">Témoignages</a>
+    <a href="#boutique">Boutique</a>
+    <a href="#contact">Contact</a>
+    <a href="#booking" class="drawer-cta">Prendre rendez-vous</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="hero-tagline">Esthéticienne certifiée · Chambly, QC</p>
+      <h1>Révélez votre<br><em>beauté naturelle</em></h1>
+      <p class="hero-sub">Avec cœur, passion et précision.</p>
+      <p class="hero-body">Je suis Chloé — fraîchement diplômée et profondément passionnée par mon métier. Chez moi, chaque cliente reçoit mon attention entière, du début à la fin du soin.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn btn-rose">Prendre rendez-vous</a>
+        <a href="#about" class="btn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.55);">Me découvrir</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=900&q=85" alt="Ambiance soin esthétique">
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-bar-inner">
+        <div class="trust-item">
+          <div class="trust-icon">✓</div>
+          Diplômée & certifiée
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">♡</div>
+          Attention 100% personnalisée
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✦</div>
+          Produits professionnels
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">◷</div>
+          Rendez-vous flexibles
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN -->
-  <main class="main">
-    <div class="section-heading">Les trois maquettes — choisis la tienne</div>
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container text-center">
+      <h4>Ce que je propose</h4>
+      <h2>Mes soins</h2>
+      <p class="section-subtitle">Des soins soigneusement sélectionnés pour révéler la meilleure version de vous — adaptés à votre peau, vos besoins, votre rythme.</p>
+      <div class="services-grid">
 
-    <div class="variants-grid">
-
-      <!-- VARIANT A -->
-      <div class="variant-card">
-        <div class="card-preview">
-          <iframe src="variant-a.html" title="Variante A" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-          <a href="variant-a.html" target="_blank" class="card-preview-overlay" title="Ouvrir la variante A"></a>
-          <div class="card-badge badge-a">Variante A</div>
-        </div>
-        <div class="card-body">
-          <div class="card-variant-label label-a">Variante A</div>
-          <div class="card-title">Moderne & Professionnelle</div>
-          <p class="card-desc">Look propre et corporatif, dominé par un bleu canard. C'est solide — mais honnêtement, ça fait un peu "clinique établie depuis 1998". Pas nécessairement toi à 18 ans, mais si t'aimes cette vibe sérieuse, c'est une option valide.</p>
-          <div class="card-pills">
-            <span class="pill">Bleu canard</span>
-            <span class="pill">Raleway</span>
-            <span class="pill">Géométrique</span>
-            <span class="pill">Sobre</span>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&q=80" alt="Épilation laser">
           </div>
-          <div class="card-palette">
-            <div class="swatch" style="background:#177d91;" title="Bleu canard"></div>
-            <div class="swatch" style="background:#00596b;" title="Canard foncé"></div>
-            <div class="swatch" style="background:#2ec4db;" title="Turquoise clair"></div>
-            <div class="swatch" style="background:#1c1c1c;" title="Encre"></div>
-            <div class="swatch" style="background:#ffffff;" title="Blanc"></div>
-          </div>
-          <div class="card-cta">
-            <a href="variant-a.html" target="_blank" class="btn-primary btn-a">Voir la maquette →</a>
-            <a href="variant-a.html" target="_blank" class="btn-ghost" title="Ouvrir dans un nouvel onglet">↗</a>
+          <div class="service-body">
+            <h3>Épilation laser</h3>
+            <p>Résultats durables et confortables. Technologie adaptée à tous les types de peau.</p>
+            <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
-      </div>
 
-      <!-- VARIANT B -->
-      <div class="variant-card">
-        <div class="card-preview">
-          <iframe src="variant-b.html" title="Variante B" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-          <a href="variant-b.html" target="_blank" class="card-preview-overlay" title="Ouvrir la variante B"></a>
-          <div class="card-badge badge-b">Variante B</div>
-        </div>
-        <div class="card-body">
-          <div class="card-variant-label label-b">Variante B</div>
-          <div class="card-title">Luxe Sombre & Raffiné</div>
-          <p class="card-desc">Noir profond, or, esthétique Paris rive gauche. Très impressionnant — peut-être <em>trop</em> impressionnant. Le risque : intimider avant même que la cliente appelle. Mais techniquement, c'est magnifique.</p>
-          <div class="card-pills">
-            <span class="pill">Noir & Or</span>
-            <span class="pill">Cormorant Garamond</span>
-            <span class="pill">Luxueux</span>
-            <span class="pill">Dramatique</span>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Soins visage">
           </div>
-          <div class="card-palette">
-            <div class="swatch" style="background:#0e0d0b;" title="Noir profond"></div>
-            <div class="swatch" style="background:#1e1b16;" title="Brun noir"></div>
-            <div class="swatch" style="background:#c9a96e;" title="Or"></div>
-            <div class="swatch" style="background:#e8d5b0;" title="Or clair"></div>
-            <div class="swatch" style="background:#f5ede0;" title="Crème"></div>
-          </div>
-          <div class="card-cta">
-            <a href="variant-b.html" target="_blank" class="btn-primary btn-b">Voir la maquette →</a>
-            <a href="variant-b.html" target="_blank" class="btn-ghost" title="Ouvrir dans un nouvel onglet">↗</a>
+          <div class="service-body">
+            <h3>Soins du visage</h3>
+            <p>Hydratation, éclat, anti-âge — des protocoles sur mesure selon votre bilan peau.</p>
+            <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
-      </div>
 
-      <!-- VARIANT C -->
-        <div class="variant-card" style="border-color: #7ececa; box-shadow: 0 0 0 2px #e0f4f3;">
-        <div class="card-preview">
-          <iframe src="variant-c.html" title="Variante C" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-          <a href="variant-c.html" target="_blank" class="card-preview-overlay" title="Ouvrir la variante C"></a>
-          <div class="card-badge badge-c">Variante C ✨ Mon pick</div>
-        </div>
-        <div class="card-body">
-          <div class="card-variant-label label-c">Variante C — Mon choix perso</div>
-          <div class="card-title">Océan & Chaleur — Toi à 100%</div>
-          <p class="card-desc">Couleurs océan, ton plus personnel, langage à la première personne. Mise sur toi directement plutôt que sur une image d'institut établi. Pour un lancement, c'est souvent ce qui connecte le mieux — mais c'est toi qui décides.</p>
-          <div class="card-pills">
-            <span class="pill">Océan & sable</span>
-            <span class="pill">Playfair + DM Sans</span>
-            <span class="pill">Personnel</span>
-            <span class="pill">Chaleureux</span>
-            <span class="pill">Authentique</span>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?w=600&q=80" alt="Microneedling">
           </div>
-          <div class="card-palette">
-            <div class="swatch" style="background:#2a5c58;" title="Océan profond"></div>
-            <div class="swatch" style="background:#4fada8;" title="Seafoam teal"></div>
-            <div class="swatch" style="background:#7ececa;" title="Aqua clair"></div>
-            <div class="swatch" style="background:#e0f4f3;" title="Aqua pâle"></div>
-            <div class="swatch" style="background:#fdfaf5;" title="Crème ivoire"></div>
-          </div>
-          <div class="card-cta">
-            <a href="variant-c.html" target="_blank" class="btn-primary btn-c">Voir la maquette →</a>
-            <a href="variant-c.html" target="_blank" class="btn-ghost" title="Ouvrir dans un nouvel onglet">↗</a>
+          <div class="service-body">
+            <h3>Microneedling</h3>
+            <p>Stimulation naturelle du collagène. Peau resserrée, lissée, rayonnante.</p>
+            <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
-      </div>
 
-    </div>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80" alt="Photorajeunissement">
+          </div>
+          <div class="service-body">
+            <h3>Photorajeunissement</h3>
+            <p>Lumière pulsée pour unifier le teint et effacer les imperfections visibles.</p>
+            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+          </div>
+        </div>
 
-    <!-- RECOMMENDATION -->
-    <div class="recommendation">
-      <div class="rec-icon">🏄‍♀️</div>
-      <div>
-        <div class="rec-label">L'avis de l'oncle</div>
-        <div class="rec-title">Pourquoi la Variante C me semble la plus adaptée</div>
-        <p class="rec-desc">Les variantes A et B sont solides, mais elles projettent une image d'institut établi. La variante C mise plutôt sur toi directement — ton énergie, les couleurs que t'aimes, un ton plus personnel. Pour un lancement, ça peut mieux connecter avec les clientes que tu veux attirer. Cela dit, c'est une première version — si une autre ambiance te parle plus, on part de là.</p>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Soins corps">
+          </div>
+          <div class="service-body">
+            <h3>Soins corps</h3>
+            <p>Enveloppements, drainages et soins raffermissants pour chouchouter votre corps.</p>
+            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?w=600&q=80" alt="Extensions cils">
+          </div>
+          <div class="service-body">
+            <h3>Extensions de cils</h3>
+            <p>Regard ouvert, naturel ou glamour — posés avec soin et précision.</p>
+            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+          </div>
+        </div>
+
       </div>
     </div>
+  </section>
 
-    <!-- NEXT STEPS -->
-    <div class="next-steps">
-      <div class="section-heading">C'est quoi la suite ?</div>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <div class="step-title">Dis-moi ce que t'aimes (ou pas) 😄</div>
-          <p class="step-desc">Laquelle te parle ? Laquelle te ressemble ? Laquelle te fait dire « ouais c'est moi ça »? Envoie-moi un message, même juste une réaction — je pars de là. T'as pas besoin de savoir pourquoi, juste ce que tu ressens.</p>
+  <!-- ABOUT -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <div class="about-img-main">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85" alt="Chloé — esthéticienne">
+          </div>
+          <div class="about-badge">
+            <strong>2025</strong>
+            diplômée avec<br>passion
+          </div>
         </div>
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <div class="step-title">Envoie-moi tes infos</div>
-          <p class="step-desc">Quelques photos de toi (ou de ton espace), ta liste de services avec tes prix, et deux-trois lignes sur toi. Rien de compliqué — une note vocale sur ton téléphone, ça marche parfaitement. Je m'occupe du reste.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <div class="step-title">Ton oncle s'occupe du tech 🙌</div>
-          <p class="step-desc">Pour ça, t'as juste à faire confiance. Ton site sera en ligne, les clientes pourront réserver, te contacter, et voir tes services. Toi tu t'occupes des soins — moi je m'occupe du site. Deal ?</p>
+        <div class="about-content">
+          <h4>Mon histoire</h4>
+          <h2>Je suis Chloé — et la beauté, c'est ma vocation.</h2>
+          <p>Depuis toute petite, je suis fascinée par l'art de prendre soin de soi. Quand j'ai décidé de devenir esthéticienne, ce n'était pas juste un choix de carrière — c'était une évidence.</p>
+          <p>Fraîchement diplômée, j'ai fondé Institut Bella avec une conviction profonde : chaque cliente mérite d'être reçue comme une amie proche. Pas de rotation, pas de précipitation — juste une présence entière et des mains expertes.</p>
+          <p>Je travaille seule, intentionnellement. Parce que le soin commence avant même de toucher la peau.</p>
+          <div class="about-signature">— Chloé</div>
+          <div class="about-values">
+            <div class="about-value">
+              <div class="value-dot"></div>
+              <div>
+                <strong>Formation rigoureuse</strong>
+                <p>Diplômée et continuellement en formation pour maîtriser les dernières techniques.</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="value-dot"></div>
+              <div>
+                <strong>Écoute active</strong>
+                <p>Chaque soin commence par une consultation pour comprendre vos vrais besoins.</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="value-dot"></div>
+              <div>
+                <strong>Produits sélectionnés</strong>
+                <p>Seulement des produits professionnels que je connaîs et en lesquels je crois.</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="value-dot"></div>
+              <div>
+                <strong>Espace intime</strong>
+                <p>Un salon calme, propre et pensé pour que vous vous sentiez vraiment bien.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-  </main>
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="container text-center">
+      <h4>Investissez en vous</h4>
+      <h2>Tarifs</h2>
+      <p class="section-subtitle">Des prix accessibles pour des soins professionnels — parce que prendre soin de soi ne devrait pas être un luxe.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Découverte</h3>
+          <p class="pricing-desc">Pour une première visite</p>
+          <div class="price">$65</div>
+          <div class="price-period">et plus selon le soin</div>
+          <ul class="pricing-features">
+            <li>Bilan peau offert</li>
+            <li>Soin du visage 60 min</li>
+            <li>Conseils personnalisés</li>
+            <li>15% rabais première visite</li>
+          </ul>
+          <a href="#booking" class="btn btn-outline" style="width:100%; text-align:center;">Réserver</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Le plus populaire</div>
+          <h3>Signature Bella</h3>
+          <p class="pricing-desc">Mon soin phare tout-inclus</p>
+          <div class="price">$135</div>
+          <div class="price-period">soin complet 90 min</div>
+          <ul class="pricing-features">
+            <li>Consultation + bilan</li>
+            <li>Nettoyage en profondeur</li>
+            <li>Soin hydratant ciblé</li>
+            <li>Massage du visage</li>
+            <li>Masque personnalisé</li>
+          </ul>
+          <a href="#booking" class="btn btn-rose" style="width:100%; text-align:center;">Réserver</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Forfait fidélité</h3>
+          <p class="pricing-desc">Pour les clientes régulières</p>
+          <div class="price">$299</div>
+          <div class="price-period">pack 3 soins (économisez 15%)</div>
+          <ul class="pricing-features">
+            <li>3 soins au choix</li>
+            <li>Suivi entre séances</li>
+            <li>Produits à tarif préférentiel</li>
+            <li>Priorité agenda</li>
+          </ul>
+          <a href="#booking" class="btn btn-outline" style="width:100%; text-align:center;">Réserver</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container text-center">
+      <h4>Ce qu'elles disent</h4>
+      <h2>Mes premières clientes</h2>
+      <p class="section-subtitle">Rien ne me touche plus que de voir une cliente repartir rayonnante et confiante.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">« J'avais un peu d'appréhension de consulter quelqu'un de si nouvelle dans le domaine, mais Chloé m'a complètement rassurée. Son soin était précis, doux et tellement efficace. »</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <div class="author-name">Sophie M.</div>
+              <div class="author-detail">Soin du visage · mai 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">« Chloé prend vraiment le temps d'écouter et d'expliquer chaque étape. Je me suis sentie entre bonnes mains du début à la fin. Je reviens déjà la semaine prochaine! »</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <div class="author-name">Marie-Ève T.</div>
+              <div class="author-detail">Épilation laser · juin 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">« Le cadre est calme, les produits sentent bon et Chloé est aux petits soins. Exactement ce que je cherchais — un endroit où je me sens vraiment chouchoutée. »</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <div class="author-name">Amélie R.</div>
+              <div class="author-detail">Soin Signature Bella · juin 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUTIQUE -->
+  <section class="section" id="boutique">
+    <div class="container text-center">
+      <h4>Ma sélection</h4>
+      <h2>Boutique</h2>
+      <p class="section-subtitle">Des produits professionnels que j'utilise moi-même et que je recommande avec conviction — pour prolonger vos soins à la maison.</p>
+      <div class="products-grid" id="products-grid" data-limit="8">
+        <p class="products-state" id="products-state">Chargement des produits…</p>
+      </div>
+      <div style="margin-top:40px;">
+        <a href="#boutique" class="btn btn-outline" id="products-viewall" hidden>Voir tous les produits</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA -->
+  <section class="booking-cta" id="booking">
+    <div class="container">
+      <h4>Prête à commencer ?</h4>
+      <h2>Réservez votre soin</h2>
+      <p>Un rendez-vous, c'est le début d'une belle relation. Je suis là pour vous accueillir chaleureusement et créer le soin qui vous ressemble.</p>
+      <a href="mailto:chloe@institutbella.ca?subject=Réservation" class="btn btn-rose">Prendre rendez-vous →</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <h4>Me contacter</h4>
+          <h2>Écrivez-moi</h2>
+          <p style="margin-bottom:36px;">Une question ? Envie de savoir quel soin vous convient le mieux ? Je réponds avec plaisir dans les 24h.</p>
+          <form class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Prénom</label>
+                <input type="text" placeholder="Marie">
+              </div>
+              <div class="form-group">
+                <label>Nom</label>
+                <input type="text" placeholder="Tremblay">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Courriel</label>
+              <input type="email" placeholder="marie@email.com">
+            </div>
+            <div class="form-group">
+              <label>Soin souhaité</label>
+              <select>
+                <option>— Sélectionner —</option>
+                <option>Épilation laser</option>
+                <option>Soin du visage</option>
+                <option>Microneedling</option>
+                <option>Photorajeunissement</option>
+                <option>Soins corps</option>
+                <option>Extensions de cils</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Dites-moi ce que vous recherchez..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-rose" style="align-self:flex-start;">Envoyer →</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <h3>Informations pratiques</h3>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Adresse</div>
+              <div class="info-value">123 rue des Érables<br>Chambly, QC J3L 0A1</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-label">Téléphone</div>
+              <div class="info-value">(450) 123-4567</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉</div>
+            <div>
+              <div class="info-label">Courriel</div>
+              <div class="info-value">chloe@institutbella.ca</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">◷</div>
+            <div>
+              <div class="info-label">Horaires</div>
+              <div class="hours-grid">
+                <span class="hours-day">Mar – Ven</span><span class="hours-time">10h – 19h</span>
+                <span class="hours-day">Samedi</span><span class="hours-time">10h – 17h</span>
+                <span class="hours-day">Dim – Lun</span><span class="hours-time">Fermé</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <div class="footer">
-    Fait avec ❤️ (et quelques soirées) par <span>ton oncle Christian</span> pour <span>Institut Bella par Chloé</span> · Chambly, QC · Juin 2026
-    &nbsp;·&nbsp; 🍰 P.S. J'attends toujours mon gâteau au chocolat. Ou une crème glacée. L'une ou l'autre.
-  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">Bella <em>par Chloé</em></div>
+          <p>Institut esthétique à taille humaine, fondé avec passion à Chambly. Chaque cliente est unique — chaque soin l'est aussi.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="#services">Soins</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#pricing">Tarifs</a></li>
+            <li><a href="#boutique">Boutique</a></li>
+            <li><a href="#booking">Réserver</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Soins</h5>
+          <ul class="footer-links">
+            <li><a href="#">Épilation laser</a></li>
+            <li><a href="#">Soins visage</a></li>
+            <li><a href="#">Microneedling</a></li>
+            <li><a href="#">Extensions cils</a></li>
+            <li><a href="#">Soins corps</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul class="footer-links">
+            <li><a href="#">Chambly, QC</a></li>
+            <li><a href="tel:4501234567">(450) 123-4567</a></li>
+            <li><a href="mailto:chloe@institutbella.ca">chloe@institutbella.ca</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Bella par Chloé. Tous droits réservés.</span>
+        <a href="#" style="color:rgba(255,255,255,0.4);">Politique de confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('navbar');
+    const announcement = document.getElementById('announcement');
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('nav-drawer');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      drawer.classList.toggle('open', isOpen);
+      const navBottom = nav.getBoundingClientRect().bottom;
+      drawer.style.top = navBottom + 'px';
+    });
+
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const past = window.scrollY > 50;
+      nav.classList.toggle('scrolled', past);
+      if (past) {
+        announcement.style.transform = 'translateY(-100%)';
+        nav.style.top = '0';
+      } else {
+        announcement.style.transform = '';
+        nav.style.top = '40px';
+      }
+      if (drawer.classList.contains('open')) {
+        drawer.style.top = nav.getBoundingClientRect().bottom + 'px';
+      }
+    });
+  </script>
+
+  <!-- BOUTIQUE — live Wix Stores products -->
+  <script type="module">
+    import { queryProducts } from './js/wix/wix-store-catalog.js';
+
+    const grid = document.getElementById('products-grid');
+    const state = document.getElementById('products-state');
+    const viewAll = document.getElementById('products-viewall');
+    const limit = parseInt(grid?.dataset.limit || '8', 10);
+
+    const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+    const stripTags = (html) => {
+      const d = document.createElement('div');
+      d.innerHTML = html ?? '';
+      return (d.textContent || '').trim();
+    };
+
+    function renderCard(p) {
+      const name = escapeHtml(p.name);
+      const price = escapeHtml(p.actualPriceRange?.minValue?.formattedAmount ?? '');
+      const img = p.media?.main?.image?.url;
+      const imgAlt = escapeHtml(p.media?.main?.image?.altText || p.name || '');
+      const desc = escapeHtml(stripTags(p.plainDescription).slice(0, 90));
+      const soldOut = p.inventory?.availabilityStatus === 'OUT_OF_STOCK';
+      const imgHtml = img
+        ? `<img src="${escapeHtml(img)}" alt="${imgAlt}" loading="lazy">`
+        : '';
+      return `
+        <div class="product-card">
+          <div class="product-img">${imgHtml}</div>
+          <div class="product-body">
+            <div class="product-name">${name}</div>
+            ${desc ? `<div class="product-desc">${desc}</div>` : ''}
+            <div class="product-footer">
+              <span class="product-price">${price}</span>
+              ${soldOut
+                ? '<span class="product-new">Épuisé</span>'
+                : '<a href="#booking" class="btn btn-rose" style="padding:7px 16px;font-size:11px;">Ajouter</a>'}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    (async () => {
+      try {
+        const { products } = await queryProducts({ limit });
+        if (!products.length) {
+          state.textContent = 'La boutique sera bientôt disponible.';
+          return;
+        }
+        grid.innerHTML = products.map(renderCard).join('');
+        if (viewAll) viewAll.hidden = false;
+      } catch (err) {
+        console.error('Boutique load failed:', err);
+        state.textContent = 'Impossible de charger la boutique pour le moment.';
+      }
+    })();
+  </script>
 
 </body>
 </html>

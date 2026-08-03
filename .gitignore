@@ -1,0 +1,18 @@
+# Wix CLI / headless build + temp
+dist/
+.wix/
+wix-error.log
+
+# Browser tool temp
+.playwright-mcp/
+
+# Agent skills (tooling, not part of the site)
+.agents/
+.claude/
+skills-lock.json
+
+# Environment (public client id, not secret — kept local anyway)
+.env
+
+# Node
+node_modules/
