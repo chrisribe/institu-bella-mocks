@@ -558,6 +558,56 @@
     .pricing-card.featured .pricing-features li { border-color: rgba(255,255,255,0.15); }
     .pricing-card.featured .pricing-features li::before { color: var(--rose-light); }
 
+    /* ── PRICE MENU (real service list) ── */
+    .price-categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 56px;
+      text-align: left;
+      max-width: 980px;
+      margin: 48px auto 0;
+    }
+    .price-category {
+      background: var(--sand);
+      border-radius: var(--radius-md);
+      padding: 28px 30px;
+    }
+    .price-category h3 {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--plum);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--divider);
+    }
+    .price-list { list-style: none; }
+    .price-list li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px dashed var(--divider);
+      font-size: 14px;
+    }
+    .price-list li:last-child { border-bottom: none; }
+    .price-list .item-name { color: var(--ink-soft); }
+    .price-list .item-name small { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
+    .price-list .item-price { color: var(--ink); font-weight: 600; white-space: nowrap; font-family: var(--font-body); }
+    .price-category.full { grid-column: 1 / -1; }
+    .price-note {
+      max-width: 980px;
+      margin: 28px auto 0;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-align: left;
+      line-height: 1.7;
+    }
+    @media (max-width: 800px) {
+      .price-categories { grid-template-columns: 1fr; }
+    }
+
     /* ── TESTIMONIALS ── */
     .testimonials-section { background: var(--plum); }
     .testimonials-section h2, .testimonials-section h4 { color: #fff; }
@@ -808,14 +858,14 @@
       <p class="hero-tagline">Esthéticienne certifiée · Chambly, QC</p>
       <h1>Révélez votre<br><em>beauté naturelle</em></h1>
       <p class="hero-sub">Avec cœur, passion et précision.</p>
-      <p class="hero-body">Je suis Chloé — fraîchement diplômée et profondément passionnée par mon métier. Chez moi, chaque cliente reçoit mon attention entière, du début à la fin du soin.</p>
+      <p class="hero-body">Moi, c'est Chloé 🤍 Esthéticienne passionnée par la beauté et le bien-être, j'ai créé Institut Bella par Chloé avec le désir d'offrir un endroit où chaque cliente peut se sentir écoutée, valorisée et prendre un moment pour elle.</p>
       <div class="hero-btns">
         <a href="#booking" class="btn btn-rose">Prendre rendez-vous</a>
         <a href="#about" class="btn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.55);">Me découvrir</a>
       </div>
     </div>
     <div class="hero-right">
-      <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=900&q=85" alt="Ambiance soin esthétique">
+      <img src="images/hero-facial.jpg" alt="Soin du visage en cours">
     </div>
   </section>
 
@@ -853,66 +903,66 @@
 
         <div class="service-card">
           <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&q=80" alt="Épilation laser">
+            <img src="images/lash-lift/IMG_3673.jpg" alt="Lash lift">
           </div>
           <div class="service-body">
-            <h3>Épilation laser</h3>
-            <p>Résultats durables et confortables. Technologie adaptée à tous les types de peau.</p>
+            <h3>Lash lift</h3>
+            <p>Cils relevés et teintés pour un regard ouvert, sans mascara ni extensions.</p>
             <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
         <div class="service-card">
           <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Soins visage">
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80" alt="Brow lamination">
+          </div>
+          <div class="service-body">
+            <h3>Brow lamination</h3>
+            <p>Sourcils disciplinés et fournis, teinture incluse pour un fini naturel.</p>
+            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Soins du visage">
           </div>
           <div class="service-body">
             <h3>Soins du visage</h3>
-            <p>Hydratation, éclat, anti-âge — des protocoles sur mesure selon votre bilan peau.</p>
+            <p>Facial complet — nettoyage en profondeur, hydratation et éclat sur mesure.</p>
             <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
         <div class="service-card">
           <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?w=600&q=80" alt="Microneedling">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80" alt="Manucure et pédicure">
           </div>
           <div class="service-body">
-            <h3>Microneedling</h3>
-            <p>Stimulation naturelle du collagène. Peau resserrée, lissée, rayonnante.</p>
+            <h3>Ongles</h3>
+            <p>Manucure vernis gel, pédicure express ou complète — des mains et pieds soignés.</p>
             <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
         <div class="service-card">
           <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80" alt="Photorajeunissement">
+            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Soins corporels">
           </div>
           <div class="service-body">
-            <h3>Photorajeunissement</h3>
-            <p>Lumière pulsée pour unifier le teint et effacer les imperfections visibles.</p>
+            <h3>Soins corporels</h3>
+            <p>Exfoliation, enveloppement aux algues et soins du dos pour tout le corps.</p>
             <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
         <div class="service-card">
           <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Soins corps">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&q=80" alt="Maquillage">
           </div>
           <div class="service-body">
-            <h3>Soins corps</h3>
-            <p>Enveloppements, drainages et soins raffermissants pour chouchouter votre corps.</p>
-            <a href="#pricing" class="service-link">Voir les tarifs →</a>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?w=600&q=80" alt="Extensions cils">
-          </div>
-          <div class="service-body">
-            <h3>Extensions de cils</h3>
-            <p>Regard ouvert, naturel ou glamour — posés avec soin et précision.</p>
+            <h3>Maquillage</h3>
+            <p>Jour, événement, bal ou mariage — un maquillage adapté à chaque occasion.</p>
             <a href="#pricing" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
@@ -927,7 +977,7 @@
       <div class="about-grid">
         <div class="about-img-wrap">
           <div class="about-img-main">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85" alt="Chloé — esthéticienne">
+            <img src="images/chloe-about.jpg" alt="Chloé — esthéticienne" style="object-position: center 20%;">
           </div>
           <div class="about-badge">
             <strong>2025</strong>
@@ -937,8 +987,8 @@
         <div class="about-content">
           <h4>Mon histoire</h4>
           <h2>Je suis Chloé — et la beauté, c'est ma vocation.</h2>
-          <p>Depuis toute petite, je suis fascinée par l'art de prendre soin de soi. Quand j'ai décidé de devenir esthéticienne, ce n'était pas juste un choix de carrière — c'était une évidence.</p>
-          <p>Fraîchement diplômée, j'ai fondé Institut Bella avec une conviction profonde : chaque cliente mérite d'être reçue comme une amie proche. Pas de rotation, pas de précipitation — juste une présence entière et des mains expertes.</p>
+          <p>Pour moi, l'esthétique ne consiste pas seulement à transformer, mais à révéler ce qui est déjà là. À travers mes soins, je souhaite mettre en lumière votre beauté naturelle et vous aider à vous sentir belle, confiante et bien dans votre peau.</p>
+          <p>Chaque rendez-vous est une expérience personnalisée, adaptée à vos besoins et réalisée avec douceur, passion et attention aux détails. Parce que la beauté commence par la confiance que l'on ressent en soi.</p>
           <p>Je travaille seule, intentionnellement. Parce que le soin commence avant même de toucher la peau.</p>
           <div class="about-signature">— Chloé</div>
           <div class="about-values">
@@ -982,51 +1032,87 @@
       <h4>Investissez en vous</h4>
       <h2>Tarifs</h2>
       <p class="section-subtitle">Des prix accessibles pour des soins professionnels — parce que prendre soin de soi ne devrait pas être un luxe.</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Découverte</h3>
-          <p class="pricing-desc">Pour une première visite</p>
-          <div class="price">$65</div>
-          <div class="price-period">et plus selon le soin</div>
-          <ul class="pricing-features">
-            <li>Bilan peau offert</li>
-            <li>Soin du visage 60 min</li>
-            <li>Conseils personnalisés</li>
-            <li>15% rabais première visite</li>
+
+      <div class="price-categories">
+        <div class="price-category">
+          <h3>Cils &amp; sourcils</h3>
+          <ul class="price-list">
+            <li><span class="item-name">Lash lift<small>Teinture incluse</small></span><span class="item-price">100&nbsp;$</span></li>
+            <li><span class="item-name">Brow lamination<small>Teinture incluse</small></span><span class="item-price">85&nbsp;$</span></li>
+            <li><span class="item-name">Combo brow lamination + lash lift</span><span class="item-price">165&nbsp;$</span></li>
+            <li><span class="item-name">Épilation sourcils</span><span class="item-price">15&nbsp;$</span></li>
           </ul>
-          <a href="#booking" class="btn btn-outline" style="width:100%; text-align:center;">Réserver</a>
         </div>
-        <div class="pricing-card featured">
-          <div class="pricing-badge">Le plus populaire</div>
-          <h3>Signature Bella</h3>
-          <p class="pricing-desc">Mon soin phare tout-inclus</p>
-          <div class="price">$135</div>
-          <div class="price-period">soin complet 90 min</div>
-          <ul class="pricing-features">
-            <li>Consultation + bilan</li>
-            <li>Nettoyage en profondeur</li>
-            <li>Soin hydratant ciblé</li>
-            <li>Massage du visage</li>
-            <li>Masque personnalisé</li>
+
+        <div class="price-category">
+          <h3>Soins du visage</h3>
+          <ul class="price-list">
+            <li><span class="item-name">Facial<small>Soin 90 min</small></span><span class="item-price">90&nbsp;$</span></li>
+            <li><span class="item-name">Facial étudiant<small>60 min</small></span><span class="item-price">75&nbsp;$</span></li>
           </ul>
-          <a href="#booking" class="btn btn-rose" style="width:100%; text-align:center;">Réserver</a>
         </div>
-        <div class="pricing-card">
-          <h3>Forfait fidélité</h3>
-          <p class="pricing-desc">Pour les clientes régulières</p>
-          <div class="price">$299</div>
-          <div class="price-period">pack 3 soins (économisez 15%)</div>
-          <ul class="pricing-features">
-            <li>3 soins au choix</li>
-            <li>Suivi entre séances</li>
-            <li>Produits à tarif préférentiel</li>
-            <li>Priorité agenda</li>
+
+        <div class="price-category">
+          <h3>Ongles</h3>
+          <ul class="price-list">
+            <li><span class="item-name">Manucure vernis gel</span><span class="item-price">50&nbsp;$</span></li>
+            <li><span class="item-name">Pédicure express</span><span class="item-price">50&nbsp;$</span></li>
+            <li><span class="item-name">Pédicure complète</span><span class="item-price">70&nbsp;$</span></li>
           </ul>
-          <a href="#booking" class="btn btn-outline" style="width:100%; text-align:center;">Réserver</a>
         </div>
+
+        <div class="price-category">
+          <h3>Soins corporels</h3>
+          <ul class="price-list">
+            <li><span class="item-name">Soin du dos<small>1 h 30</small></span><span class="item-price">Sur demande</span></li>
+            <li><span class="item-name">Exfoliation corporelle<small>45 min</small></span><span class="item-price">70&nbsp;$</span></li>
+            <li><span class="item-name">Enveloppement aux algues<small>45 min</small></span><span class="item-price">70&nbsp;$</span></li>
+            <li><span class="item-name">Soin du corps complet<small>1 h 30</small></span><span class="item-price">125&nbsp;$</span></li>
+          </ul>
+        </div>
+
+        <div class="price-category">
+          <h3>Maquillage</h3>
+          <ul class="price-list">
+            <li><span class="item-name">Maquillage de jour</span><span class="item-price">70&nbsp;$</span></li>
+            <li><span class="item-name">Maquillage événement</span><span class="item-price">Dès 80&nbsp;$</span></li>
+            <li><span class="item-name">Maquillage de bal</span><span class="item-price">85&nbsp;$</span></li>
+            <li><span class="item-name">Maquillage de mariage</span><span class="item-price">Dès 120&nbsp;$</span></li>
+            <li><span class="item-name">Essai maquillage mariage</span><span class="item-price">Dès 75&nbsp;$</span></li>
+            <li><span class="item-name">Faux cils<small>Supplément</small></span><span class="item-price">+10&nbsp;$</span></li>
+          </ul>
+        </div>
+
+        <div class="price-category">
+          <h3>Cours</h3>
+          <ul class="price-list">
+            <li><span class="item-name">Cours d'auto-maquillage<small>1 h 30</small></span><span class="item-price">100&nbsp;$</span></li>
+          </ul>
+        </div>
+
+        <div class="price-category full">
+          <h3>Forfaits &amp; combos</h3>
+          <ul class="price-list">
+            <li><span class="item-name">Moment Bella<small>Combo dos &amp; visage — soin du dos + facial</small></span><span class="item-price">160&nbsp;$</span></li>
+            <li><span class="item-name">Exfoliation corporelle + enveloppement aux algues</span><span class="item-price">130&nbsp;$</span></li>
+            <li><span class="item-name">Forfait rituel Bella<small>Facial + lash lift</small></span><span class="item-price">180&nbsp;$</span></li>
+            <li><span class="item-name">Lash lift + épilation des sourcils</span><span class="item-price">110&nbsp;$</span></li>
+            <li><span class="item-name">Manucure vernis gel + pédicure complète</span><span class="item-price">110&nbsp;$</span></li>
+            <li><span class="item-name">Manucure vernis gel + pédicure express</span><span class="item-price">90&nbsp;$</span></li>
+            <li><span class="item-name">Forfait mariée<small>Essai + maquillage du jour J</small></span><span class="item-price">185&nbsp;$</span></li>
+            <li><span class="item-name">Forfait mariée prestige<small>Essai + maquillage + faux cils</small></span><span class="item-price">195&nbsp;$</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="price-note">Tarifs sujets à changement. Un tarif de groupe est disponible pour le cortège de mariée — contactez-moi pour un forfait personnalisé.</p>
+
+      <div style="margin-top:36px;">
+        <a href="#booking" class="btn btn-rose">Prendre rendez-vous</a>
       </div>
     </div>
   </section>
+
 
   <!-- TESTIMONIALS -->
   <section class="section testimonials-section" id="testimonials">
@@ -1053,7 +1139,7 @@
             <div class="author-avatar">M</div>
             <div>
               <div class="author-name">Marie-Ève T.</div>
-              <div class="author-detail">Épilation laser · juin 2026</div>
+              <div class="author-detail">Lash lift · juin 2026</div>
             </div>
           </div>
         </div>
@@ -1105,39 +1191,40 @@
           <h4>Me contacter</h4>
           <h2>Écrivez-moi</h2>
           <p style="margin-bottom:36px;">Une question ? Envie de savoir quel soin vous convient le mieux ? Je réponds avec plaisir dans les 24h.</p>
-          <form class="contact-form">
+          <form class="contact-form" id="contact-form">
             <div class="form-row">
               <div class="form-group">
                 <label>Prénom</label>
-                <input type="text" placeholder="Marie">
+                <input type="text" name="form_field_7971" placeholder="Marie" required>
               </div>
               <div class="form-group">
                 <label>Nom</label>
-                <input type="text" placeholder="Tremblay">
+                <input type="text" name="form_field_0bf7" placeholder="Tremblay" required>
               </div>
             </div>
             <div class="form-group">
               <label>Courriel</label>
-              <input type="email" placeholder="marie@email.com">
+              <input type="email" name="form_field_2a6a" placeholder="marie@email.com" required>
             </div>
             <div class="form-group">
               <label>Soin souhaité</label>
-              <select>
-                <option>— Sélectionner —</option>
-                <option>Épilation laser</option>
-                <option>Soin du visage</option>
-                <option>Microneedling</option>
-                <option>Photorajeunissement</option>
-                <option>Soins corps</option>
-                <option>Extensions de cils</option>
+              <select name="form_field_a8fd" required>
+                <option value="">— Sélectionner —</option>
+                <option>Lash lift</option>
+                <option>Brow lamination</option>
+                <option>Soins du visage</option>
+                <option>Ongles</option>
+                <option>Soins corporels</option>
+                <option>Maquillage</option>
                 <option>Autre</option>
               </select>
             </div>
             <div class="form-group">
               <label>Message</label>
-              <textarea placeholder="Dites-moi ce que vous recherchez..."></textarea>
+              <textarea name="form_field_8ed2" placeholder="Dites-moi ce que vous recherchez..." required></textarea>
             </div>
             <button type="submit" class="btn btn-rose" style="align-self:flex-start;">Envoyer →</button>
+            <p id="contact-form-status" role="status" style="margin-top:12px;font-size:14px;min-height:20px;"></p>
           </form>
         </div>
         <div class="contact-info">
@@ -1146,7 +1233,7 @@
             <div class="info-icon">📍</div>
             <div>
               <div class="info-label">Adresse</div>
-              <div class="info-value">123 rue des Érables<br>Chambly, QC J3L 0A1</div>
+              <div class="info-value">1348 rue Jean-Monty<br>Chambly, QC J3L 5V7</div>
             </div>
           </div>
           <div class="info-item">
@@ -1200,11 +1287,11 @@
         <div class="footer-col">
           <h5>Soins</h5>
           <ul class="footer-links">
-            <li><a href="#">Épilation laser</a></li>
-            <li><a href="#">Soins visage</a></li>
-            <li><a href="#">Microneedling</a></li>
-            <li><a href="#">Extensions cils</a></li>
-            <li><a href="#">Soins corps</a></li>
+            <li><a href="#services">Lash lift</a></li>
+            <li><a href="#services">Brow lamination</a></li>
+            <li><a href="#services">Soins du visage</a></li>
+            <li><a href="#services">Ongles</a></li>
+            <li><a href="#services">Soins corporels</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1334,6 +1421,40 @@
         state.textContent = 'Impossible de charger la boutique pour le moment.';
       }
     })();
+  </script>
+
+  <!-- CONTACT FORM — submits to Wix Forms (Forms & Submissions dashboard) -->
+  <script type="module">
+    import { submitForm } from './js/wix/wix-forms.js';
+
+    const CONTACT_FORM_ID = 'd8f45a9f-71c0-4bfc-9173-b4adea04a209';
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('contact-form-status');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const data = Object.fromEntries(new FormData(form));
+
+      submitBtn.disabled = true;
+      status.textContent = 'Envoi en cours...';
+      status.style.color = '';
+
+      try {
+        await submitForm(CONTACT_FORM_ID, data);
+        status.textContent = 'Envoyé ✓';
+        status.style.color = '#2f6f4f';
+        submitBtn.blur();
+        setTimeout(() => form.reset(), 1500);
+      } catch (err) {
+        console.error('Contact form submission failed:', err);
+        status.textContent = "Erreur d'envoi. Vous pouvez m'écrire à chloe@institutbella.ca.";
+        status.style.color = '#b3261e';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
   </script>
 
 </body>
