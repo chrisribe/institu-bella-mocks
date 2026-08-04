@@ -1351,35 +1351,12 @@
   <!-- BOUTIQUE — live Wix Stores products -->
   <script type="module">
     import { queryProducts } from './js/wix/wix-store-catalog.js';
+    import { escapeHtml, stripTags, formatPrice, wixImg } from './js/site-helpers.js';
 
     const grid = document.getElementById('products-grid');
     const state = document.getElementById('products-state');
     const viewAll = document.getElementById('products-viewall');
     const limit = parseInt(grid?.dataset.limit || '8', 10);
-
-    const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-    const stripTags = (html) => {
-      const d = document.createElement('div');
-      d.innerHTML = html ?? '';
-      return (d.textContent || '').trim();
-    };
-
-    function formatPrice(raw) {
-      // Wix formattedAmount glues the currency code to the number ("27,00C$") — add a thin space.
-      return String(raw ?? '').replace(/(\d)([A-Za-z])/, '$1\u00A0$2');
-    }
-
-    function wixImg(url, size) {
-      // Wix serves full-resolution originals by default. Request a resized/compressed
-      // rendition via the Wix Media Platform URL transform so pages load fast.
-      if (!url) return url;
-      const match = url.match(/\/media\/([^/?#]+)/);
-      const filename = match ? match[1] : null;
-      if (!filename) return url;
-      return `https://static.wixstatic.com/media/${filename}/v1/fill/w_${size},h_${size},al_c,q_80,usm_0.66_1.00_0.01/file.jpg`;
-    }
 
     function renderCard(p) {
       const name = escapeHtml(p.name);
@@ -1388,23 +1365,22 @@
       const imgAlt = escapeHtml(p.media?.main?.image?.altText || p.name || '');
       const desc = escapeHtml(stripTags(p.plainDescription).slice(0, 90));
       const soldOut = p.inventory?.availabilityStatus === 'OUT_OF_STOCK';
+      const href = `shop.html?product=${encodeURIComponent(p.slug)}`;
       const imgHtml = img
         ? `<img src="${escapeHtml(img)}" alt="${imgAlt}" loading="lazy">`
         : '';
       return `
-        <div class="product-card">
+        <a class="product-card" href="${escapeHtml(href)}" style="display:block;">
           <div class="product-img">${imgHtml}</div>
           <div class="product-body">
             <div class="product-name">${name}</div>
             ${desc ? `<div class="product-desc">${desc}</div>` : ''}
             <div class="product-footer">
               <span class="product-price">${price}</span>
-              ${soldOut
-                ? '<span class="product-new">Épuisé</span>'
-                : '<a href="#booking" class="btn btn-rose" style="padding:7px 16px;font-size:11px;">Ajouter</a>'}
+              ${soldOut ? '<span class="product-new">Épuisé</span>' : ''}
             </div>
           </div>
-        </div>`;
+        </a>`;
     }
 
     (async () => {
