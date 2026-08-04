@@ -1,0 +1,124 @@
+/* ── SHARED — design tokens, reset, buttons, product card/PDP components ──
+   Used by both index.html and shop.html. Page-specific layout (nav, hero,
+   services, pricing, etc. for index.html; shop header/hero for shop.html)
+   stays inline in each page's <style> block. */
+
+:root {
+  --rose:        #4fada8;   /* seafoam teal — CTA, accents */
+  --rose-light:  #7ececa;   /* light aqua */
+  --rose-pale:   #e0f4f3;   /* pale aqua tint */
+  --rose-hover:  #3d9490;   /* darker seafoam on hover */
+  --plum:        #2a5c58;   /* medium ocean — hero, nav, footer */
+  --plum-light:  #3d8480;   /* lighter ocean */
+  --sand:        #f5f0e6;   /* warm sand card bg */
+  --sand-mid:    #ece4d4;   /* deeper sand */
+  --cream:       #fdfaf5;   /* page bg — warm white */
+  --ink:         #162e2c;   /* near-black with ocean tint */
+  --ink-soft:    #3d6260;   /* muted ocean text */
+  --muted:       #7aa4a2;   /* placeholder / secondary text */
+  --divider:     #d4ecea;   /* soft aqua divider */
+  --on-rose:     #ffffff;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --radius-sm:    8px;
+  --radius-md:    16px;
+  --radius-lg:    32px;
+  --radius-pill:  999px;
+  --section-pad:  96px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--ink); line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; }
+ul { list-style: none; }
+
+.container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 14px 32px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-rose { background: var(--rose); color: var(--on-rose); }
+.btn-rose:hover {
+  background: var(--rose-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 129, 106, 0.35);
+}
+.btn-outline { background: transparent; color: var(--rose); border: 1.5px solid var(--rose); }
+.btn-outline:hover { background: var(--rose-pale); }
+.btn-plum { background: var(--plum); color: #fff; }
+.btn-plum:hover { background: var(--plum-light); transform: translateY(-2px); }
+
+/* ── PRODUCT CARD (boutique teaser + shop grid) ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.product-card {
+  background: var(--sand);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(74,45,53,0.1);
+}
+.product-img { aspect-ratio: 1; overflow: hidden; background: var(--divider); }
+.product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.product-card:hover .product-img img { transform: scale(1.04); }
+.product-body { padding: 16px 18px 20px; }
+.product-name { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.product-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-price { font-family: var(--font-body); font-weight: 600; font-size: 17px; color: var(--ink); letter-spacing: 0.2px; }
+.product-new {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--rose); border: 1px solid var(--rose);
+  padding: 3px 10px; border-radius: var(--radius-pill);
+}
+.products-state { grid-column: 1 / -1; color: var(--muted); font-size: 14px; padding: 40px 0; }
+
+@media (max-width: 900px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .products-grid { grid-template-columns: 1fr; } }
+
+/* ── PDP OVERLAY (shop.html product detail) ── */
+.pdp-overlay {
+  position: fixed; inset: 0; background: rgba(22,46,44,0.55);
+  display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 100;
+}
+.pdp-overlay[hidden] { display: none; }
+.pdp-card {
+  background: var(--cream); border-radius: var(--radius-md); max-width: 780px; width: 100%;
+  max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 640px) { .pdp-card { grid-template-columns: 1fr; } }
+.pdp-img { aspect-ratio: 1; background: var(--divider); }
+.pdp-img img { width: 100%; height: 100%; object-fit: cover; }
+.pdp-body { padding: 32px; position: relative; }
+.pdp-close {
+  position: absolute; top: 16px; right: 16px; background: none; border: none;
+  font-size: 22px; color: var(--muted); cursor: pointer; line-height: 1;
+}
+.pdp-name { font-family: var(--font-display); font-size: 24px; margin-bottom: 8px; }
+.pdp-price { font-family: var(--font-body); font-weight: 700; font-size: 19px; color: var(--rose); margin-bottom: 16px; }
+.pdp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 24px; }
+.pdp-desc p { margin-bottom: 10px; }
+.pdp-stock { font-size: 13px; margin-bottom: 20px; }
+.pdp-stock.in { color: var(--rose); }
+.pdp-stock.out { color: #b0554f; }
