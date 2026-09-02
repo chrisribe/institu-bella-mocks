@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bella par Chloé — Variant C (Warm Personal Brand)</title>
+  <title>Institut Bella par Chloé — Soins esthétiques à Chambly</title>
+  <meta name="description" content="Institut Bella par Chloé offre des soins esthétiques personnalisés à Chambly : soins du visage, lash lift, brow lamination, ongles, soins corporels et maquillage.">
+  <link rel="canonical" href="https://institutbellaparchloe.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:site_name" content="Institut Bella par Chloé">
+  <meta property="og:title" content="Institut Bella par Chloé — Soins esthétiques à Chambly">
+  <meta property="og:description" content="Des soins esthétiques personnalisés, réalisés avec douceur, passion et attention aux détails à Chambly.">
+  <meta property="og:url" content="https://institutbellaparchloe.com/">
+  <meta property="og:image" content="https://institutbellaparchloe.com/images/hero-facial.jpg">
+  <meta property="og:image:alt" content="Soin du visage chez Institut Bella par Chloé">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="images/hero-facial.jpg" fetchpriority="high">
@@ -83,7 +94,7 @@
     /* ── NAV ── */
     .nav {
       position: fixed;
-      top: 40px;
+      top: 0;
       left: 0; right: 0;
       z-index: 100;
       padding: 0 48px;
@@ -176,7 +187,7 @@
     .nav-drawer {
       display: none;
       position: fixed;
-      top: 112px;
+      top: 72px;
       left: 0; right: 0;
       background: var(--cream);
       box-shadow: 0 8px 32px rgba(74, 45, 53, 0.12);
@@ -214,7 +225,7 @@
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding-top: 112px;
+      padding-top: 72px;
     }
     .hero-left {
       background: var(--plum);
@@ -696,12 +707,6 @@
 </head>
 <body>
 
-  <!-- ANNOUNCEMENT -->
-  <div class="announcement" id="announcement">
-    ✨ Ouverture — 15% de rabais pour les premières clientes &nbsp;·&nbsp;
-    <a href="#booking">Réserver maintenant</a>
-  </div>
-
   <!-- NAV -->
   <nav class="nav" id="navbar">
     <a href="#" class="nav-logo">Bella <em>par Chloé</em></a>
@@ -1057,7 +1062,7 @@
       <h4>Prête à commencer ?</h4>
       <h2>Réservez votre soin</h2>
       <p>Un rendez-vous, c'est le début d'une belle relation. Je suis là pour vous accueillir chaleureusement et créer le soin qui vous ressemble.</p>
-      <a href="mailto:chloe@institutbella.ca?subject=R%C3%A9servation&body=Bonjour%20Chlo%C3%A9%2C%0A%0AJe%20souhaiterais%20prendre%20rendez-vous%20pour%20%3A%0A%0ASoin%20d%C3%A9sir%C3%A9%20%3A%20%0ADates%2Fheures%20qui%20me%20conviennent%20%3A%20%0A%0AMerci%20!" class="btn btn-rose">Prendre rendez-vous →</a>
+      <a href="#contact" class="btn btn-rose">Faire une demande →</a>
     </div>
   </section>
 
@@ -1117,8 +1122,8 @@
           <div class="info-item">
             <div class="info-icon">✉</div>
             <div>
-              <div class="info-label">Courriel</div>
-              <div class="info-value">chloe@institutbella.ca</div>
+              <div class="info-label">Demande en ligne</div>
+              <div class="info-value">Utilisez le formulaire ci-contre</div>
             </div>
           </div>
           <div class="info-item">
@@ -1168,24 +1173,21 @@
         <div class="footer-col">
           <h5>Contact</h5>
           <ul class="footer-links">
-            <li><a href="#">Chambly, QC</a></li>
+            <li>Chambly, QC</li>
             <li><a href="tel:4384071565">(438) 407-1565</a></li>
-            <li><a href="mailto:chloe@institutbella.ca">chloe@institutbella.ca</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
+            <li><a href="#contact">Formulaire de contact</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 Bella par Chloé. Tous droits réservés.</span>
-        <a href="#" style="color:rgba(255,255,255,0.4);">Politique de confidentialité</a>
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,0.65);">Politique de confidentialité</a>
       </div>
     </div>
   </footer>
 
   <script>
     const nav = document.getElementById('navbar');
-    const announcement = document.getElementById('announcement');
     const hamburger = document.getElementById('hamburger');
     const drawer = document.getElementById('nav-drawer');
 
@@ -1206,13 +1208,6 @@
     window.addEventListener('scroll', () => {
       const past = window.scrollY > 50;
       nav.classList.toggle('scrolled', past);
-      if (past) {
-        announcement.style.transform = 'translateY(-100%)';
-        nav.style.top = '0';
-      } else {
-        announcement.style.transform = '';
-        nav.style.top = '40px';
-      }
       if (drawer.classList.contains('open')) {
         drawer.style.top = nav.getBoundingClientRect().bottom + 'px';
       }
@@ -1296,7 +1291,7 @@
         setTimeout(() => form.reset(), 1500);
       } catch (err) {
         console.error('Contact form submission failed:', err);
-        status.textContent = "Erreur d'envoi. Vous pouvez m'écrire à chloe@institutbella.ca.";
+        status.textContent = "Erreur d'envoi. Vous pouvez appeler au (438) 407-1565.";
         status.style.color = '#b3261e';
       } finally {
         submitBtn.disabled = false;

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /mocks/
+
+Sitemap: https://institutbellaparchloe.com/sitemap.xml
