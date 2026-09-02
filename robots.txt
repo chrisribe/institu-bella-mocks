@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /mocks/
 
-Sitemap: https://institutbellaparchloe.com/sitemap.xml
+Sitemap: https://institu-be-b9e9c146-christianribe.wix-site-host.com/sitemap.xml
