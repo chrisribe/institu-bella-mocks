@@ -508,7 +508,10 @@
       background: var(--sand);
       border-radius: var(--radius-md);
       padding: 28px 30px;
+      scroll-margin-top: 96px;
+      transition: box-shadow 0.4s;
     }
+    .price-category:target { box-shadow: 0 0 0 2px var(--rose); }
     .price-category h3 {
       font-family: var(--font-display);
       font-size: 19px;
@@ -791,7 +794,7 @@
           <div class="service-body">
             <h3>Lash lift</h3>
             <p>Cils relevés et teintés pour un regard ouvert, sans mascara ni extensions.</p>
-            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+            <a href="#tarifs-cils" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
@@ -802,7 +805,7 @@
           <div class="service-body">
             <h3>Brow lamination</h3>
             <p>Sourcils disciplinés et fournis, teinture incluse pour un fini naturel.</p>
-            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+            <a href="#tarifs-cils" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
@@ -813,7 +816,7 @@
           <div class="service-body">
             <h3>Soins du visage</h3>
             <p>Facial complet — nettoyage en profondeur, hydratation et éclat sur mesure.</p>
-            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+            <a href="#tarifs-visage" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
@@ -824,7 +827,7 @@
           <div class="service-body">
             <h3>Ongles</h3>
             <p>Manucure vernis gel, pédicure express ou complète — des mains et pieds soignés.</p>
-            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+            <a href="#tarifs-ongles" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
@@ -835,7 +838,7 @@
           <div class="service-body">
             <h3>Soins corporels</h3>
             <p>Exfoliation, enveloppement aux algues et soins du dos pour tout le corps.</p>
-            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+            <a href="#tarifs-corps" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
@@ -846,7 +849,7 @@
           <div class="service-body">
             <h3>Maquillage</h3>
             <p>Jour, événement, bal ou mariage — un maquillage adapté à chaque occasion.</p>
-            <a href="#pricing" class="service-link">Voir les tarifs →</a>
+            <a href="#tarifs-maquillage" class="service-link">Voir les tarifs →</a>
           </div>
         </div>
 
@@ -917,7 +920,7 @@
       <p class="section-subtitle">Des prix accessibles pour des soins professionnels — parce que prendre soin de soi ne devrait pas être un luxe.</p>
 
       <div class="price-categories">
-        <div class="price-category">
+        <div class="price-category" id="tarifs-cils">
           <h3>Cils &amp; sourcils</h3>
           <ul class="price-list">
             <li><span class="item-name">Lash lift<small>Teinture incluse</small></span><span class="item-price">100&nbsp;$</span></li>
@@ -927,7 +930,7 @@
           </ul>
         </div>
 
-        <div class="price-category">
+        <div class="price-category" id="tarifs-visage">
           <h3>Soins du visage</h3>
           <ul class="price-list">
             <li><span class="item-name">Facial<small>Soin 90 min</small></span><span class="item-price">90&nbsp;$</span></li>
@@ -935,7 +938,7 @@
           </ul>
         </div>
 
-        <div class="price-category">
+        <div class="price-category" id="tarifs-ongles">
           <h3>Ongles</h3>
           <ul class="price-list">
             <li><span class="item-name">Manucure vernis gel</span><span class="item-price">50&nbsp;$</span></li>
@@ -944,7 +947,7 @@
           </ul>
         </div>
 
-        <div class="price-category">
+        <div class="price-category" id="tarifs-corps">
           <h3>Soins corporels</h3>
           <ul class="price-list">
             <li><span class="item-name">Soin du dos<small>1 h 30</small></span><span class="item-price">70&nbsp;$</span></li>
@@ -954,7 +957,7 @@
           </ul>
         </div>
 
-        <div class="price-category">
+        <div class="price-category" id="tarifs-maquillage">
           <h3>Maquillage</h3>
           <ul class="price-list">
             <li><span class="item-name">Maquillage de jour</span><span class="item-price">70&nbsp;$</span></li>
@@ -966,14 +969,14 @@
           </ul>
         </div>
 
-        <div class="price-category">
+        <div class="price-category" id="tarifs-cours">
           <h3>Cours</h3>
           <ul class="price-list">
             <li><span class="item-name">Cours d'auto-maquillage<small>1 h 30</small></span><span class="item-price">100&nbsp;$</span></li>
           </ul>
         </div>
 
-        <div class="price-category full">
+        <div class="price-category full" id="tarifs-forfaits">
           <h3>Forfaits &amp; combos</h3>
           <ul class="price-list">
             <li><span class="item-name">Moment Bella<small>Combo dos &amp; visage — soin du dos + facial</small></span><span class="item-price">160&nbsp;$</span></li>
@@ -1123,7 +1126,7 @@
             <div class="info-icon">✉</div>
             <div>
               <div class="info-label">Courriel</div>
-              <div class="info-value"><a href="mailto:chloebella@gmail.com">chloebella@gmail.com</a></div>
+              <div class="info-value"><a href="mailto:bellaparchloe@gmail.com">bellaparchloe@gmail.com</a></div>
             </div>
           </div>
           <div class="info-item">
@@ -1175,7 +1178,7 @@
           <ul class="footer-links">
             <li>Chambly, QC</li>
             <li><a href="tel:4384071565">(438) 407-1565</a></li>
-            <li><a href="mailto:chloebella@gmail.com">chloebella@gmail.com</a></li>
+            <li><a href="mailto:bellaparchloe@gmail.com">bellaparchloe@gmail.com</a></li>
             <li><a href="#contact">Formulaire de contact</a></li>
           </ul>
         </div>
@@ -1292,7 +1295,7 @@
         setTimeout(() => form.reset(), 1500);
       } catch (err) {
         console.error('Contact form submission failed:', err);
-        status.textContent = "Erreur d'envoi. Vous pouvez écrire à chloebella@gmail.com ou appeler au (438) 407-1565.";
+        status.textContent = "Erreur d'envoi. Vous pouvez écrire à bellaparchloe@gmail.com ou appeler au (438) 407-1565.";
         status.style.color = '#b3261e';
       } finally {
         submitBtn.disabled = false;
